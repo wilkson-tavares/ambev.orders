@@ -32,7 +32,7 @@ builder.Services.AddScoped<IOrderService, OrderService>();
 var UsingTaxReform = builder.Configuration.GetValue<bool>("FeatureFlags:UsingTaxReform");
 
 if (UsingTaxReform)
-    builder.Services.AddScoped<ITaxCalculator, TaxReformaStrategy>();
+    builder.Services.AddScoped<ITaxCalculator, TaxReformStrategy>();
 else
     builder.Services.AddScoped<ITaxCalculator, TaxAtualStrategy>();
 
@@ -50,4 +50,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseAuthorization();
 app.MapControllers();
-app.Run();
+app.Run();      
+
+public partial class Program { }

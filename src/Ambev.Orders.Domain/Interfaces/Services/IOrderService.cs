@@ -16,4 +16,8 @@ public interface IOrderService
     Task<IReadOnlyCollection<Order>> ListByStatusAsync(
         OrderStatus status,
         CancellationToken ct = default);
+
+    Task<Order> StartProcessingAsync(int id, CancellationToken ct = default);
+
+    Task<Order> SendAsync(int id, CancellationToken ct = default);
 }
