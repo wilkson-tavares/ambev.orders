@@ -29,7 +29,9 @@ public sealed class AppDbContext : DbContext
 
         modelBuilder.Entity<OrderItem>(builder =>
         {
-            builder.HasKey(i => new { i.ProductId });
+            builder.Property<int>("Id").ValueGeneratedOnAdd();
+            builder.HasKey("Id");
+            builder.Property(i => i.ProductId).IsRequired();
             builder.Property(i => i.Value).IsRequired();
             builder.Property(i => i.Quantity).IsRequired();
         });

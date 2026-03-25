@@ -4,7 +4,6 @@ using Orders.API.Responses;
 using Orders.Domain.Entities;
 using Orders.Domain.Enums;
 using Orders.Domain.Interfaces.Services;
-using Orders.Domain.Services;
 
 namespace Orders.API.Controllers;
 
@@ -70,5 +69,25 @@ public sealed class OrdersController : ControllerBase
         var orders = await _service.ListByStatusAsync(statusEnum, ct);
 
         return Ok(orders.Select(OrderResponse.FromEntity));
+    }
+
+    [HttpPatch("{id:int}/start-processing")]
+    [ProducesResponseType(typeof(OrderResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> StartProcessing(int id, CancellationToken ct)
+    {
+        var order = await _service.StartProcessingAsync(id, ct);
+        return Ok(OrderResponse.FromEntity(order));
+    }
+
+    [HttpPatch("{id:int}/send")]
+    [ProducesResponseType(typeof(OrderResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> Send(int id, CancellationToken ct)
+    {
+        var order = await _service.SendAsync(id, ct);
+        return Ok(OrderResponse.FromEntity(order));
     }
 }

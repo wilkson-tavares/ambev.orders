@@ -24,7 +24,7 @@ public sealed class ExceptionMiddleware
         {
             _logger.LogWarning("Domain error: {Message}", ex.Message);
 
-            var isDuplicidade = ex.Message.Contains("Already exists");
+            var isDuplicidade = ex.Message.Contains("already exists");
 
             context.Response.StatusCode = isDuplicidade
                 ? StatusCodes.Status409Conflict

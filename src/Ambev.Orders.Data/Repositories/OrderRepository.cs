@@ -21,6 +21,12 @@ public sealed class OrderRepository : IOrderRepository
         await _context.SaveChangesAsync(ct);
     }
 
+    public async Task UpdateAsync(Order order, CancellationToken ct = default)
+    {
+        _context.Orders.Update(order);
+        await _context.SaveChangesAsync(ct);
+    }
+
     public async Task<Order?> GetByIdAsync(int id, CancellationToken ct = default)
     {
         return await _context.Orders

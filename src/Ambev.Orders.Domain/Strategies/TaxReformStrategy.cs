@@ -3,7 +3,7 @@ using Orders.Domain.Interfaces.Strategies;
 
 namespace Orders.Domain.Strategies;
 
-public sealed class TaxReformaStrategy : ITaxCalculator
+public sealed class TaxReformStrategy : ITaxCalculator
 {
     private const decimal Aliquot = 0.2m;
 
