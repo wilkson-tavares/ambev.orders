@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Ambev.Orders.API/Ambev.Orders.API.csproj" />
+    <Project Path="src/Ambev.Orders.Data/Ambev.Orders.Data.csproj" />
+    <Project Path="src/Ambev.Orders.Domain/Ambev.Orders.Domain.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Ambev.Orders.Tests/Ambev.Orders.Tests.csproj" />
+  </Folder>
+</Solution>
