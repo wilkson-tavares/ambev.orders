@@ -1,7 +1,7 @@
 using Orders.Domain.Entities;
 using Orders.Domain.Enums;
 
-namespace Orders.Domain.Interfaces;
+namespace Orders.Domain.Interfaces.Repositories;
 
 public interface IOrderRepository
 {
