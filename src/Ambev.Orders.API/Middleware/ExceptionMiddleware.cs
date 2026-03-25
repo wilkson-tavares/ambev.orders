@@ -24,11 +24,14 @@ public sealed class ExceptionMiddleware
         {
             _logger.LogWarning("Domain error: {Message}", ex.Message);
 
-            var isDuplicidade = ex.Message.Contains("already exists");
+            var isNotFound = ex.Message.Contains("not found");
+            var isDuplicate = ex.Message.Contains("already exists");
 
-            context.Response.StatusCode = isDuplicidade
-                ? StatusCodes.Status409Conflict
-                : StatusCodes.Status400BadRequest;
+            context.Response.StatusCode = isNotFound
+                ? StatusCodes.Status404NotFound
+                : isDuplicate
+                    ? StatusCodes.Status409Conflict
+                    : StatusCodes.Status400BadRequest;
 
             context.Response.ContentType = "application/json";
 
