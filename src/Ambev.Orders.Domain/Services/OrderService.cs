@@ -51,4 +51,32 @@ public sealed class OrderService : IOrderService
         OrderStatus status,
         CancellationToken ct = default)
         => await _repository.ListByStatusAsync(status, ct);
+
+    public async Task<Order> StartProcessingAsync(int id, CancellationToken ct = default)
+    {
+        var order = await _repository.GetByIdAsync(id, ct);
+
+        if (order is null)
+            throw new DomainException($"Order '{id}' not found.");
+
+        order.StartProcessing();
+
+        await _repository.UpdateAsync(order, ct);
+
+        return order;
+    }
+
+    public async Task<Order> SendAsync(int id, CancellationToken ct = default)
+    {
+        var order = await _repository.GetByIdAsync(id, ct);
+
+        if (order is null)
+            throw new DomainException($"Order '{id}' not found.");
+
+        order.Send();
+
+        await _repository.UpdateAsync(order, ct);
+
+        return order;
+    }
 }

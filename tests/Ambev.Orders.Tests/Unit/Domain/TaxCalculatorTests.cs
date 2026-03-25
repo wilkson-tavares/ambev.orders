@@ -37,7 +37,7 @@ public class TaxCalculatorTests
     public void TaxReforma_ShouldCalculate20Percent()
     {
         var order = CreateOrderWithValue(100m);
-        var calculator = new TaxReformaStrategy();
+        var calculator = new TaxReformStrategy();
 
         var result = calculator.Calculate(order);
 
@@ -59,7 +59,7 @@ public class TaxCalculatorTests
     public void TaxReforma_ShouldRoundToTwoDecimalPlaces()
     {
         var order = CreateOrderWithValue(52.70m);
-        var calculator = new TaxReformaStrategy();
+        var calculator = new TaxReformStrategy();
 
         var result = calculator.Calculate(order);
 
@@ -78,5 +78,19 @@ public class TaxCalculatorTests
         var result = calculator.Calculate(order);
 
         result.Should().Be(Math.Round(value * 0.3m, 2));
+    }
+
+    [Theory]
+    [InlineData(50)]
+    [InlineData(200)]
+    [InlineData(999.99)]
+    public void TaxReforma_ShouldCalculateCorrectlyForVariousValues(decimal value)
+    {
+        var order = CreateOrderWithValue(value);
+        var calculator = new TaxReformStrategy();
+
+        var result = calculator.Calculate(order);
+
+        result.Should().Be(Math.Round(value * 0.2m, 2));
     }
 }
