@@ -88,11 +88,11 @@ public class OrdersIntegrationTests : IClassFixture<WebApplicationFactory<Progra
     }
 
     [Fact]
-    public async Task GET_GetById_NonExistentOrder_Returns400()
+    public async Task GET_GetById_NonExistentOrder_Returns404()
     {
         var response = await _client.GetAsync("/api/orders/999999");
 
-        response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound);
     }
 
     [Fact]
@@ -150,11 +150,11 @@ public class OrdersIntegrationTests : IClassFixture<WebApplicationFactory<Progra
     }
 
     [Fact]
-    public async Task PATCH_StartProcessing_NonExistentOrder_Returns400()
+    public async Task PATCH_StartProcessing_NonExistentOrder_Returns404()
     {
         var response = await _client.PatchAsync("/api/orders/999999/start-processing", null);
 
-        response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound);
     }
 
     [Fact]
@@ -187,10 +187,10 @@ public class OrdersIntegrationTests : IClassFixture<WebApplicationFactory<Progra
     }
 
     [Fact]
-    public async Task PATCH_Send_NonExistentOrder_Returns400()
+    public async Task PATCH_Send_NonExistentOrder_Returns404()
     {
         var response = await _client.PatchAsync("/api/orders/999999/send", null);
 
-        response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound);
     }
 }
