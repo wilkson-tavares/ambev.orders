@@ -1,5 +1,5 @@
 using Orders.Domain.Entities;
-using Orders.Domain.Interfaces;
+using Orders.Domain.Interfaces.Strategies;
 
 namespace Orders.Domain.Strategies;
 

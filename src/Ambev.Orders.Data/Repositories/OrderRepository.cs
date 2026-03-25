@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Orders.Data.Context;
 using Orders.Domain.Entities;
 using Orders.Domain.Enums;
-using Orders.Domain.Interfaces;
+using Orders.Domain.Interfaces.Repositories;
 
 namespace Orders.Data.Repositories;
 

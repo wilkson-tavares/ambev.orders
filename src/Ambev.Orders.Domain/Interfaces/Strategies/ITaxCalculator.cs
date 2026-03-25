@@ -1,6 +1,6 @@
 using Orders.Domain.Entities;
 
-namespace Orders.Domain.Interfaces;
+namespace Orders.Domain.Interfaces.Strategies;
 
 public interface ITaxCalculator
 {
